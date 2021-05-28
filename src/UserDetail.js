@@ -3,7 +3,7 @@ import { Container, Text, Content, Form, Item, Input, Label, ListItem, List } fr
 
 import { useNavigation, useRoute } from '@react-navigation/native'
 
-import {TouchableOpacity, Linking} from 'react-native'
+import {TouchableOpacity, Linking, Share} from 'react-native'
 
 const formatPhone = (phone,shapeIt) => {
 
@@ -41,8 +41,10 @@ const UserDetail = () => {
         Linking.openURL(toURL)
     }
 
-    const viewActivity = (text) => {
-        ActivityView.show({text})
+    const viewActivity = (message) => {
+        Share.share({
+            message
+        })
     }
 
     return (
@@ -64,8 +66,8 @@ const UserDetail = () => {
                     </TouchableOpacity>
                 </ListItem>
                 <ListItem>
-                    <TouchableOpacity onPress={() => viewActivity(user.email)}>
-                        <Label>{user.email}</Label>
+                    <TouchableOpacity onPress={() => viewActivity(user.tckn)}>
+                        <Label>{user.tckn}</Label>
                     </TouchableOpacity>
                 </ListItem>
             </List>
