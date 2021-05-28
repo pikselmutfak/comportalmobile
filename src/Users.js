@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Header, Left, Body, Right, Title, Content, List, ListItem, Text, Icon, Button } from 'native-base'
+import { Container, Header, Left, Body, Label, Right, Title, Content, List, ListItem, Text, Icon, Button } from 'native-base'
 
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -31,9 +31,9 @@ const Users = () => {
             users.map((user) => {
               return (
                 <ListItem key={user._id} onPress={() => {
-                  navigation.navigate('UserProfile')
+                  navigation.navigate('UserDetail', {user})
                 }}>
-                  <Text>{user.firstName}</Text>
+                  <Label>{user.firstName}</Label>
                 </ListItem>
               )
             })

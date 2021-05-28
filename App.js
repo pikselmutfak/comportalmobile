@@ -9,35 +9,57 @@ import {
   View,
 } from 'react-native'
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen'
+'react-native/Libraries/NewAppScreen'
 
 import Users from './src/Users'
 import UserProfile from './src/UserProfile'
+import UserDetail from './src/UserDetail'
 
 import { store } from './src/store'
 import {Provider} from 'react-redux'
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+import Icon from 'react-native-vector-icons/Ionicons'
+
+import {Button} from 'native-base'
+
+import {TouchableOpacity} from 'react-native'
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark'
 
   const Stack = createStackNavigator()
 
+  const optionsUserProfile = ({navigation}) => {
+    return {
+      headerTitle: "",
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginLeft: 4}}
+        >
+          <Icon name="arrow-back-outline" size={26} color="#333" />
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  const optionsUsers = () => {
+    return {
+      headerTitle: ""
+    }
+  }
+
   return (
     <>
       <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Users" component={Users} />
-            <Stack.Screen name="UserProfile" component={UserProfile} />
+            <Stack.Screen name="Users" component={Users} options={optionsUsers} />
+            <Stack.Screen name="UserProfile" component={UserProfile} options={optionsUserProfile} />
+            <Stack.Screen name="UserDetail" component={UserDetail} options={optionsUserProfile} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

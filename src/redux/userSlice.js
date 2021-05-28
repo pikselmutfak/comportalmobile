@@ -15,7 +15,7 @@ import axios from 'axios'
 //   phone: "5324871222"
 // }]
 
-const urlPrefix = 'http://localhost:3000'
+const urlPrefix = 'http://comportal.azurewebsites.net'
 
 const initialState = []
 

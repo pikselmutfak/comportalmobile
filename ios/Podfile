@@ -12,6 +12,8 @@ target 'comportalmobile' do
     :hermes_enabled => false
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'comportalmobileTests' do
     inherit! :complete
     # Pods for testing
