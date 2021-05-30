@@ -3,6 +3,10 @@ import { Container, Text, Content, Form, Item, Input, Label } from 'native-base'
 
 import { useNavigation, useRoute } from '@react-navigation/native'
 
+import moment from 'moment'
+
+import DateTimePicker from '@react-native-community/datetimepicker'
+
 const formatPhone = (phone,shapeIt) => {
 
     let text = ""
@@ -29,6 +33,7 @@ const formatPhone = (phone,shapeIt) => {
 const UserProfile = () => {
 
     const {params:{user={}}} = useRoute()
+
     const [item,setItem] = useState(user)
 
     const modifyItem = (key,value) => {
@@ -42,7 +47,7 @@ const UserProfile = () => {
 
     return (
 
-<Container>
+      <Container>
         <Content>
           <Form>
             <Item underline>
@@ -61,8 +66,20 @@ const UserProfile = () => {
               <Input disabled value={item.tckn} onChangeText={text => modifyItem('tckn', text)} />
             </Item>
             <Item underline>
-              <Input disabled value={formatPhone(item.phone,true)} onChangeText={text => modifyItem('phone', text)} />
+              <Input hideKeyboardAccessoryView keyboardType="phone-pad" value={item.phone} onChangeText={text => modifyItem('phone', text)} />
             </Item>
+            <Item>
+              
+            </Item>
+            <DateTimePicker
+                testID="dateTimePicker"
+                value={new Date(item.startedAt)}
+                mode={"date"}
+                is24Hour={true}
+                display="default"
+                onChange={(event, selectedDate) => {console.log(selectedDate)}}
+              />
+
           </Form>
         </Content>
       </Container>    

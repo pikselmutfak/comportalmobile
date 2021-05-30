@@ -54,6 +54,7 @@ export const addUser = (info, callback) => async (dispatch) => {
 
 export const editUser = (info, _id, callback) => async (dispatch) => {
 
+    console.log('editing', info.iban)
     axios.patch(urlPrefix + '/api/user/' + _id, info)
         .then((response) => {
             dispatch(_editUser({ user: response.data, _id }))

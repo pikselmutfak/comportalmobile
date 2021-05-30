@@ -32,12 +32,12 @@ const App = () => {
 
   const Stack = createStackNavigator()
 
-  const optionsUserProfile = ({navigation}) => {
+  const optionsUserProfile = (props) => {
     return {
       headerTitle: "",
       headerLeft: () => (
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={() => props.navigation.goBack()}
           style={{width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginLeft: 4}}
         >
           <Icon name="arrow-back-outline" size={26} color="#333" />
